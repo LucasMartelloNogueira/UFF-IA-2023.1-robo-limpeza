@@ -1,0 +1,21 @@
+Lucas
+* adaptar algoritmos de busca para evitar obstaculos
+
+Valesca
+* script python para gertar base de dados com: arestas e pesos, sujeira e obstaculos
+    aresta(<peso>, v1, v2).
+    sujeira(v1).
+    obstaculo(v1).
+
+
+Karina
+* implementar distancia manhatan
+* ver como fazer alterações na base de dados (sujeira e estados do robo / assert e retract)
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+* duvidas:
+- o robo sabe previamente onde estão as sujeiras? (findall na base de dados?)

@@ -8,3 +8,6 @@
 
 ## como carregar programa no CLI do prolog: 
 * consult('<nome_programa>').
+
+## como fazer para aparecer vario resultados de uma query
+* apertar tecla "n" para pegar próximo resultado
