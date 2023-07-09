@@ -10,8 +10,15 @@ Valesca
 
 Karina
 * implementar distancia manhatan
-* ver como fazer alterações na base de dados (sujeira e estados do robo / assert e retract)
 
+* ver como fazer alterações na base de dados (sujeira e estados do robo / assert e retract)
+ASSERT -> adiciona novo fato a base de dados.
+Exemplo: assert(casado(joao, manu)).
+
+RETRACT -> remove fato da base de dados.
+Exemplo: retract(casado(joao, manu)).
+
+OBS.: Importante inserir :- dynamic casado/2 (nome da relação/fato que irá ser dinâmico) antes do início do código, para assim permitir as alterações.
 
 ------------------------------------------------------------------------------------------------
 
