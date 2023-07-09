@@ -19,6 +19,27 @@ Karina
 * ver como fazer alterações na base de dados (sujeira e estados do robo / assert e retract)
 
 
+
+NOVAS TAREFAS
+
+- fazer lógica de robo recolher todas as sujeiras e ir para o ponto final
+  - robo olha todas as sujeiras e suas heuristicas (usando função de avaliação manhattan)
+  - o robô escolhe a sujeira mais próxima (robô muda de estado a cada movimento), vai até ela e limpa a sujeira (vertice da sujeira muda de estado, ex: de "sujo" para "livre", tem que determinar isso ainda)
+  - ao limpar a primeira sujeira, robo vai para a próxima sujeira mais próxima e assim por diante
+  - ao limpar todas as sujeiras, o robô vai até a posição final e programa encerra
+
+
+Opcional (seria bom para ajudar no 10)
+
+- pesquisar formas de fazer input do terminal do prolog para arquivos
+- criar script python para formatar arquivo de saída do prolog
+- pensar em métricas de comparações em algoritmos (custo menor caminho encontrado, quantidade de nós visitados)
+- criar gráficos (sugestão: python - matplotlib) para comparar métricas
+- aprender a criar makefiles (para rodar todo o projeto - criar tabelas de métricas de algoritmos e arquivos png de gráficos)
+
+
+
+
 ------------------------------------------------------------------------------------------------
 
 
