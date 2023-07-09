@@ -1,11 +1,5 @@
 Lucas
 * adaptar algoritmos de busca para evitar obstaculos (falta testar algoritmos):
-- A*: ok
-- branch and bound: ok
-- best first: ok
-- hill climb: ok
-- profundidade: ok
-- largura: ok
 
 Valesca
 * script python para gertar base de dados com: arestas e pesos, sujeira e obstaculos
@@ -29,11 +23,19 @@ OBS.: Importante inserir :- dynamic casado/2 (nome da relação/fato que irá se
 
 NOVAS TAREFAS
 
-- fazer lógica de robo recolher todas as sujeiras e ir para o ponto final
+* fazer lógica de robo recolher todas as sujeiras e ir para o ponto final
   - robo olha todas as sujeiras e suas heuristicas (usando função de avaliação manhattan)
   - o robô escolhe a sujeira mais próxima (robô muda de estado a cada movimento), vai até ela e limpa a sujeira (vertice da sujeira muda de estado, ex: de "sujo" para "livre", tem que determinar isso ainda)
   - ao limpar a primeira sujeira, robo vai para a próxima sujeira mais próxima e assim por diante
   - ao limpar todas as sujeiras, o robô vai até a posição final e programa encerra
+
+* sort de lista de sujeiras
+  - dado uma posição inicial (ex: vertice "a") e uma lista de vertices que tem uma sujeira, usar a manhattan_distance para ordenar a lista de sujeiras
+
+* criar função main:
+  - dado uma posição inicial, uma posição final e uma lista de sujeiras, executa o algoritmo de busca para todas as sujeiras e vai até a posição final.
+
+
 
 
 Opcional (seria bom para ajudar no 10)
@@ -52,4 +54,4 @@ Opcional (seria bom para ajudar no 10)
 
 
 * duvidas:
-- o robo sabe previamente onde estão as sujeiras? (findall na base de dados?)
+- o robo sabe previamente onde estão as sujeiras? R: sim
