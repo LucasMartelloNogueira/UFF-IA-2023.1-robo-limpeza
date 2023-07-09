@@ -11,3 +11,6 @@
 
 ## como fazer para aparecer vario resultados de uma query
 * apertar tecla "n" para pegar próximo resultado
+
+## como fazer para sair do terminal do swipl
+* inserir o comando "halt."

@@ -1,9 +1,9 @@
 %Definição das Arestas do Grafo - Slide 38 - Busca Informada e
 %Não-Informada - estado objetivo é o estado F 
-%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
 
 %grafo a partir do slide 37 do material do classroom: https://drive.google.com/file/d/148PtsedKRWKvIzZmDjxl2DF5WaE6UMfa/view
 
+%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
 sGB(63,a,b).
 sGB(110,a,c).
 sGB(53,a,e).
@@ -19,6 +19,8 @@ sujeira(a).
 
 obstaculo(b).
 
+getListaObstaculos(L):-
+    findall(X, obstaculo(X), L).
 
 
 %Grafo não-dirigido:
@@ -202,7 +204,8 @@ estende([No|Caminho],NovosCaminhos):-
     findall([NovoNo,No|Caminho],
 	       (
            	   s(No,NovoNo),
-               not(membro(NovoNo,[No|Caminho]))
+               not(membro(NovoNo,[No|Caminho])),
+			   not(obstaculo(NovoNo))
            ),
            NovosCaminhos).
 
@@ -221,6 +224,7 @@ estendeG([Gc, No|Caminho],NovosCaminhos) :-
 	( 
 		sG(Gn,No,NovoNo),
 		not(member(NovoNo,[No|Caminho])),
+		not(obstaculo(NovoNo)),
 		Gnovo is Gc + Gn),
 		NovosCaminhos
 	).
@@ -239,6 +243,7 @@ estendeH([_,No|Caminho],NovosCaminhos) :-
 	( 
 		sH(HN,No,NovoNo),
 		not(member(NovoNo,[No|Caminho])),
+		not(obstaculo(NovoNo)),
 		HNovo is HN),
 		NovosCaminhos
 	).
@@ -258,6 +263,7 @@ estendeF([_,GC,_,No|Caminho],NovosCaminhos):-
 	      (
           	  sF(GN,HN,_,No,NovoNo),
               not(member(NovoNo,[No|Caminho])),
+			  not(obstaculo(NovoNo)),
               GNovo is GC + GN, 
           	  HNovo is HN, 
               FNovo is GNovo + HNovo
@@ -293,6 +299,7 @@ profundidade(Caminho, NoCorrente, Solucao):-		 %Gera a solucao se o noh sendo vi
 profundidade(Caminho, NoCorrente, Solucao) :-
 	s(NoCorrente, NoNovo),				 %Gera um novo estado
 	not(membro(NoNovo, Caminho)),                    %Evita ciclos na busca
+	not(obstaculo(NoNovo)),
 	profundidade([NoNovo|Caminho], NoNovo, Solucao). %Coloca o noh corrente no caminho e 
 							 %continua a recursao
 
