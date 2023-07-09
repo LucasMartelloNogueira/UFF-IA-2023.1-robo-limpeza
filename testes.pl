@@ -15,6 +15,9 @@
 */
 
 
+% a, [c, d] -> [d, c], i
+
+
 % vertice(id, x, y)
 
 vertice(a, 0, 0).
@@ -30,7 +33,7 @@ vertice(i, 2, 2).
 
 %sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
 
-sGB(1, a, b).
+sGB(1, a, b). sGB(1, b, a).
 sGB(1, a, d).
 sGB(1, b, c).
 sGB(1, b, e).

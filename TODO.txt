@@ -1,15 +1,33 @@
 Lucas
 * adaptar algoritmos de busca para evitar obstaculos (falta testar algoritmos):
 
+* criar função main:
+  - dado uma posição inicial, uma posição final e uma lista de sujeiras, executa o algoritmo de busca para todas as sujeiras e vai até a posição final.
+    - tem que retornar caminho (tentar pegar numero de nós visitados)
+  - criar a relação robô e atualizar estados
+
+
+
 Valesca
 * script python para gertar base de dados com: arestas e pesos, sujeira e obstaculos
     aresta(<peso>, v1, v2).
     sujeira(v1).
     obstaculo(v1).
 
+* adaptar o script de python para
+  - criar relações vértices(id, x, y).
+  - arestas: deixar os labels mais legíveis (só n ser número) e não criar repetições (ex: se tem aresta(1, a, b) não é pra ter aresta(1, b, a))
+
+* criar uma função no python que dado um tamanho n (n X n) para criar uma base de fatos aleatória (vetices, arestas, sujeiras e obstáculos)
+
+* análise algortimos:
+  - abrir arquivos e plotar graficos (pip install matplotlib)
+
+
+
 
 Karina
-* implementar distancia manhatan
+* implementar distancia manhatan 
 
 * ver como fazer alterações na base de dados (sujeira e estados do robo / assert e retract)
 ASSERT -> adiciona novo fato a base de dados.
@@ -21,6 +39,17 @@ Exemplo: retract(casado(joao, manu)).
 OBS.: Importante inserir :- dynamic casado/2 (nome da relação/fato que irá ser dinâmico) antes do início do código, para assim permitir as alterações.
 
 
+
+* sort de lista de sujeiras
+  - dado uma posição inicial (ex: vertice "a") e uma lista de vertices que tem uma sujeira, usar a manhattan_distance para ordenar a lista de sujeiras
+
+* pesquisar output de terminal do prolog para arquivo (https://stackoverflow.com/questions/22747147/swi-prolog-write-to-file)
+
+* aprender como criar makefiles
+
+
+
+
 NOVAS TAREFAS
 
 * fazer lógica de robo recolher todas as sujeiras e ir para o ponto final
@@ -29,8 +58,6 @@ NOVAS TAREFAS
   - ao limpar a primeira sujeira, robo vai para a próxima sujeira mais próxima e assim por diante
   - ao limpar todas as sujeiras, o robô vai até a posição final e programa encerra
 
-* sort de lista de sujeiras
-  - dado uma posição inicial (ex: vertice "a") e uma lista de vertices que tem uma sujeira, usar a manhattan_distance para ordenar a lista de sujeiras
 
 * criar função main:
   - dado uma posição inicial, uma posição final e uma lista de sujeiras, executa o algoritmo de busca para todas as sujeiras e vai até a posição final.
