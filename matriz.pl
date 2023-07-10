@@ -18,6 +18,16 @@ sujeira(a).
 obstaculo(b).
 
 
+movimento(id, vertice_origem, vertice_destino, movimento).
+movimentos_robo().
 
-movimento(id, vertice_origem, vertice_destino, movimento)
-movimentos_robo()
+
+vertice(a, 2, 6).
+vertice(b, 4, 9).
+
+
+% Regra para o cálculo da distância de Manhattan entre dois pontos
+distancia_manhattan(Ponto1, Ponto2, Dist) :-
+    vertice(Ponto1, X1, Y1),
+    vertice(Ponto2, X2, Y2),
+    Dist is abs(X1 - X2) + abs(Y1 - Y2).

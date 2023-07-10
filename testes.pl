@@ -1,24 +1,63 @@
 %Definição das Arestas do Grafo - Slide 38 - Busca Informada e
 %Não-Informada - estado objetivo é o estado F 
-%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
 
 %grafo a partir do slide 37 do material do classroom: https://drive.google.com/file/d/148PtsedKRWKvIzZmDjxl2DF5WaE6UMfa/view
 
-sGB(63,a,b).
-sGB(110,a,c).
-sGB(53,a,e).
-sGB(45,e,b).
-sGB(65,b,d).
-sGB(67,b,c).
-sGB(45,c,d).
-sGB(70,d,f).
-sGB(52,e,f).
-sGB(62,b,f).
 
-sujeira(a).
+% definindo matriz 3x3 (de "a" até "i")
+
+/* desenho matriz
+
+    | a  b  c |
+    | d  e  f |
+    | g  h  i |
+
+*/
+
+
+% a, [c, d] -> [d, c], i
+
+
+% vertice(id, x, y)
+
+vertice(a, 0, 0).
+vertice(b, 1, 0).
+vertice(c, 2, 0).
+vertice(d, 0, 1).
+vertice(e, 1, 1).
+vertice(f, 2, 1).
+vertice(g, 0, 2).
+vertice(h, 1, 2).
+vertice(i, 2, 2).
+
+
+%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
+
+sGB(1, a, b). sGB(1, b, a).
+sGB(1, a, d).
+sGB(1, b, c).
+sGB(1, b, e).
+sGB(1, c, f).
+sGB(1, d, e).
+sGB(1, d, g).
+sGB(1, e, f).
+sGB(1, e, h).
+sGB(1, f, i).
+sGB(1, g, h).
+sGB(1, h, i).
+
+
+sujeira(e).
+sujeira(c).
+sujeira(d).
+
 
 obstaculo(b).
+obstaculo(e).
 
+
+listaSujeiras(L):-
+    findall(X, sujeira(X), L).
 
 
 %Grafo não-dirigido:
@@ -27,30 +66,34 @@ sG(G,V1,V2):-
 sG(G,V1,V2):-
 	sGB(G,V2,V1).
 
-%sH(V,H(V,Obj)) - estimativa de custo para sair do estado ou nó V e 
-%chegar ao estado objetivo Obj
-sH(a,75).
-sH(b,40).
-sH(e,45).
-sH(c,67).
-sH(d,40).
-sH(f,0).
 
 %sF(G(n),H(n),F(n),VerticeOrigem,VerticeDestino) - usa a função F
 sF(G,H,F,V1,V2):-sG(G,V1,V2),sH(V2,H),F is G + H.
 
-% sH(G(n),H(n),F(n),VerticeOrigem,VerticeDestino) - usa somente a função
-% de avaliação H
+
+% Regra para o cálculo da distância de Manhattan entre dois pontos
+distancia_manhattan(Ponto1, Ponto2, Dist) :-
+    vertice(Ponto1, X1, Y1),
+    vertice(Ponto2, X2, Y2),
+    Dist is abs(X1 - X2) + abs(Y1 - Y2).
+
+
+% mudando funcao de avaliação para usar distancia_manhattan
+sH(V1, H):-
+    objetivo(V2),
+    distancia_manhattan(V1, V2, H).
+
+
+% mudando funcao de avaliação para usar distancia_manhattan
 sH(H,V1,V2):-
-    sGB(_,V1,V2),
-    sH(V2,H).
+    distancia_manhattan(V1, V2, H).
 
 % s(G(n),H(n),F(n),VerticeOrigem,VerticeDestino) - Não usa nenhuma
 % heurística
 s(V1,V2):-sG(_,V1,V2).
 
 %Definir o nó (estado) objetivo
-objetivo(f).
+objetivo(i).
 
 %maior([_,_,F1|_],[_,_,F2|_]) :- F1 > F2.
 
@@ -202,7 +245,8 @@ estende([No|Caminho],NovosCaminhos):-
     findall([NovoNo,No|Caminho],
 	       (
            	   s(No,NovoNo),
-               not(membro(NovoNo,[No|Caminho]))
+               not(membro(NovoNo,[No|Caminho])),
+			   not(obstaculo(NovoNo))
            ),
            NovosCaminhos).
 
@@ -221,6 +265,7 @@ estendeG([Gc, No|Caminho],NovosCaminhos) :-
 	( 
 		sG(Gn,No,NovoNo),
 		not(member(NovoNo,[No|Caminho])),
+		not(obstaculo(NovoNo)),
 		Gnovo is Gc + Gn),
 		NovosCaminhos
 	).
@@ -239,6 +284,7 @@ estendeH([_,No|Caminho],NovosCaminhos) :-
 	( 
 		sH(HN,No,NovoNo),
 		not(member(NovoNo,[No|Caminho])),
+		not(obstaculo(NovoNo)),
 		HNovo is HN),
 		NovosCaminhos
 	).
@@ -258,6 +304,7 @@ estendeF([_,GC,_,No|Caminho],NovosCaminhos):-
 	      (
           	  sF(GN,HN,_,No,NovoNo),
               not(member(NovoNo,[No|Caminho])),
+			  not(obstaculo(NovoNo)),
               GNovo is GC + GN, 
           	  HNovo is HN, 
               FNovo is GNovo + HNovo
@@ -293,6 +340,7 @@ profundidade(Caminho, NoCorrente, Solucao):-		 %Gera a solucao se o noh sendo vi
 profundidade(Caminho, NoCorrente, Solucao) :-
 	s(NoCorrente, NoNovo),				 %Gera um novo estado
 	not(membro(NoNovo, Caminho)),                    %Evita ciclos na busca
+	not(obstaculo(NoNovo)),
 	profundidade([NoNovo|Caminho], NoNovo, Solucao). %Coloca o noh corrente no caminho e 
 							 %continua a recursao
 
@@ -433,3 +481,5 @@ aEstrela([Caminho|Caminhos], Solucao, G) :-
 	concatena(Caminhos,NovosCaminhos,CaminhosTotal),
 	ordenaF(CaminhosTotal,CaminhosTotOrd),
 	aEstrela(CaminhosTotOrd, Solucao, G). 	%Coloca o noh corrente no caminho e continua a recursao
+
+
