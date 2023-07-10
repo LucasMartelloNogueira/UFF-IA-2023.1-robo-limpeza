@@ -14,3 +14,10 @@
 
 ## como fazer para sair do terminal do swipl
 * inserir o comando "halt."
+
+## para acessar um elemento de lista
+* usar predicado nth0(i, <Lista>, Elem) --> Elem = Lista[i]
+
+
+## para pegar indice de um elemento da lista
+* usar predicado nth0(I, <Lista>, <elemento>) --> I = índice do <elemento> na <Lista>

@@ -15,9 +15,37 @@
 */
 
 
-% a, [c, d] -> [d, c], i
+% testando representação matricial
 
 
+matriz(
+	[[a, b, c],
+	 [d, e, f],
+	 [g, h, i]
+	]
+).
+
+
+varrerLinha(Linha, Id, Y):-
+	nth0(Y, Linha, Id).
+
+
+getVertice([Linha|Matriz], Id, X, Y):-
+	(member(Id, Linha),
+	matriz(M),
+	nth0(X, M, Linha),
+	varrerLinha(Linha, Id, Y)
+	);
+	getVertice(Matriz, Id, X, Y).
+
+
+
+vertice(Id, X, Y):-
+	matriz(M),
+	getVertice(M, Id, X, Y).
+
+	
+/* substituido pela maneira de cima, vertices agora são pegos da matriz
 % vertice(id, x, y)
 
 vertice(a, 0, 0).
@@ -29,11 +57,22 @@ vertice(f, 2, 1).
 vertice(g, 0, 2).
 vertice(h, 1, 2).
 vertice(i, 2, 2).
+*/
 
 
-%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
 
-sGB(1, a, b). sGB(1, b, a).
+sGB(1, V1, V2):-
+    vertice(V1, X1, Y1),
+    vertice(V2, X2, Y2),
+    V1 \== V2,
+    (
+        (abs(X1 - X2) =:= 0, abs(Y1 - Y2) =:= 1);
+        (abs(X1 - X2) =:= 1, abs(Y1 - Y2) =:= 0)
+    ).
+		
+
+/*
+sGB(1, a, b).
 sGB(1, a, d).
 sGB(1, b, c).
 sGB(1, b, e).
@@ -45,6 +84,7 @@ sGB(1, e, h).
 sGB(1, f, i).
 sGB(1, g, h).
 sGB(1, h, i).
+*/
 
 
 sujeira(e).
