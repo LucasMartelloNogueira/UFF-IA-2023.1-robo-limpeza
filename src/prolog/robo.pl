@@ -10,6 +10,7 @@
 
 
 :- consult('utils.pl').
+:- consult('algoritmosBusca.pl').
 
 
 /* robo/3
@@ -23,8 +24,14 @@ definindo o robo
 */
 
 robo(a, [], 0).
-
 :- dynamic(robo/3).
+
+
+resetaRobo():-
+	substituirRelacao(
+		robo(_, _, _),
+		robo(a, [], 0)
+	).
 
 
 
@@ -57,6 +64,9 @@ novoObjetivo(NovoVertice):-
 
 
 
+/*
+  Limpando a sala utilizando algoritmo: A*
+*/
 roboLimpaSala([], PosFinal, aEstrela):-
 	robo(VerticeAtual, _, _),
 	novoObjetivo(PosFinal),
@@ -69,3 +79,58 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, aEstrela):-
 	aEstrela([[0,0,0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
 	roboLimpaSala(ListaSujeiras, PosFinal, aEstrela).
+
+
+/*
+  Limpando a sala utilizando algoritmo: hill climb
+*/
+roboLimpaSala([], PosFinal, hillClimb):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(PosFinal),
+	hillClimb([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
+	atualizaRobo(ListaCaminhosNovos, CustoNovo).
+	
+roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, hillClimb):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(ProxSujeira),
+	hillClimb([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
+	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	roboLimpaSala(ListaSujeiras, PosFinal, hillClimb).
+
+
+/*
+  Limpando a sala utilizando algoritmo: best first
+*/
+roboLimpaSala([], PosFinal, bestFirst):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(PosFinal),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo).
+	
+roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, bestFirst):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(ProxSujeira),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	roboLimpaSala(ListaSujeiras, PosFinal, bestFirst).
+
+
+/*
+  Limpando a sala utilizando algoritmo: branch and bound 
+*/
+roboLimpaSala([], PosFinal, branchAndBound):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(PosFinal),
+	branchAndBound([[0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo).
+	
+roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, branchAndBound):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(ProxSujeira),
+	branchAndBound([[0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	roboLimpaSala(ListaSujeiras, PosFinal, branchAndBound).

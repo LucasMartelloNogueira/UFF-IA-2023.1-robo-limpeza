@@ -1,3 +1,14 @@
+/*
+
+    ######################################
+
+    Arquivo que contém funções auxiliares
+
+    ######################################
+
+*/
+
+
 substituirRelacao(RelacaoAntiga, RelacaoNova):-
     retract(RelacaoAntiga),
     assertz(RelacaoNova).
