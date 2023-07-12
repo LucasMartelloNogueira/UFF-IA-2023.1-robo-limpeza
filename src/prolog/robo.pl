@@ -108,13 +108,17 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, hillClimb):-
 roboLimpaSala([], PosFinal, bestFirst):-
 	robo(VerticeAtual, _, _),
 	novoObjetivo(PosFinal),
-	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo).
 	
 roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, bestFirst):-
 	robo(VerticeAtual, _, _),
 	novoObjetivo(ProxSujeira),
-	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
 	roboLimpaSala(ListaSujeiras, PosFinal, bestFirst).
 
