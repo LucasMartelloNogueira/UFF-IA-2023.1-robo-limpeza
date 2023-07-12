@@ -57,9 +57,10 @@ atualizaRobo(NovosCaminhos, NovoCusto):-
 	robo(VerticeAtual, ListaCaminhos, CustoAtual),
 	last(NovosCaminhos, NovoVertice),
 	updateListaCaminhosRobo(ListaCaminhos, NovosCaminhos, ListaAtualizada),
+	CustoTotal is CustoAtual + NovoCusto,
 	substituirRelacao(
 		robo(VerticeAtual, ListaCaminhos, CustoAtual),
-		robo(NovoVertice, ListaAtualizada, CustoAtual+NovoCusto)
+		robo(NovoVertice, ListaAtualizada, CustoTotal)
 	).
 	
 
@@ -91,40 +92,12 @@ main():-
 	roboLimpaSala(ListaSujeiras, VerticeFinal, aEstrela).
 
 
-/*
-percorerrerSala([H, H1|Lista], PosInicial, PosFinal, aEstrela):-
-	objetivo(ObjetivoAntigo)
-	mudarObjetivo(i, H)
-	aEstrela([[0,0,0,PosInicial]],Solucao,Custo),
-	atulizarRobo(),
-	limparSala(H),
-	percorerrerSala(Lista, H, H1, aestrela).
 
-*/
-
-
-
-
-
-
-
-varrerLinha(Linha, Id, Y):-
-	nth0(Y, Linha, Id).
-
-
-getVertice([Linha|Matriz], Id, X, Y):-
-	(member(Id, Linha),
-	matriz(M),
-	nth0(X, M, Linha),
-	varrerLinha(Linha, Id, Y)
-	);
-	getVertice(Matriz, Id, X, Y).
-
-
-
+% da pra melhorar essa funcao com memoization, criando relações que já foram calculadas
 vertice(Id, X, Y):-
 	matriz(M),
-	getVertice(M, Id, X, Y).
+	nth0(X, M, Linha),
+	nth0(Y, Linha, Id).
 
 	
 /* substituido pela maneira de cima, vertices agora são pegos da matriz
@@ -143,6 +116,7 @@ vertice(i, 2, 2).
 
 
 
+% da pra melhorar essa funcao, tentar percorrer matriz uma vez só
 sGB(1, V1, V2):-
     vertice(V1, X1, Y1),
     vertice(V2, X2, Y2),
@@ -151,6 +125,8 @@ sGB(1, V1, V2):-
         (abs(X1 - X2) =:= 0, abs(Y1 - Y2) =:= 1);
         (abs(X1 - X2) =:= 1, abs(Y1 - Y2) =:= 0)
     ).
+
+
 		
 
 /*
@@ -602,14 +578,3 @@ aEstrela([Caminho|Caminhos], Solucao, G) :-
 	concatena(Caminhos,NovosCaminhos,CaminhosTotal),
 	ordenaF(CaminhosTotal,CaminhosTotOrd),
 	aEstrela(CaminhosTotOrd, Solucao, G). 	%Coloca o noh corrente no caminho e continua a recursao
-
-
-/* limparSala/5
-
-+ <arg-1> (Int) posição inicial do robô
-+ <arg-2> (List<Int>) lista das posições das sujeiras
-+ <arg-3> (Int) posição final do robô
-
-*/
-
-

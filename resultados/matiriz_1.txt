@@ -1,0 +1,40 @@
+ desenho matriz
+
+    | a  b  c |
+    | d  e  f |
+    | g  h  i |
+
+
+
+** RESULTADOS ** (sem add da parte da Karina)
+
+
+- A*
+
+V (vértice final) = i,
+L (lista caminhos) = [a, d, e, f, c, f, e, d, e, f, i],
+C (custo total) = 10 
+
+
+- hill climbing
+
+
+X = i,
+Y = [a, d, e, d, a, c, f, e, d, a, c, f, e, h, g, i],
+Z = 15
+
+
+
+- best first
+
+X = i,
+Y = [a, d, e, d, g, h, i, f, c, f, e, d, e, f, i],
+Z = 14
+
+
+
+- branch and bound
+
+X = i,
+Y = [a, d, e, f, c, f, e, d, e, f, i],
+Z = 10 .
