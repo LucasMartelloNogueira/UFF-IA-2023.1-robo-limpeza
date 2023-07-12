@@ -1,3 +1,7 @@
+:- consult('utils.pl').
+
+
+
 %Definição das Arestas do Grafo - Slide 38 - Busca Informada e
 %Não-Informada - estado objetivo é o estado F 
 
@@ -24,6 +28,84 @@ matriz(
 	 [g, h, i]
 	]
 ).
+
+
+
+/* robo/3
+
+definindo o robo
+
++ <attr-1> : vertice atual do robo
++ <attr-2> : lista de vertices percorridos, caminho feito pelo robo
++ <attr-3> : custo da distancia percorrida pelo robo
+
+*/
+robo(a, [], 0).
+
+:- dynamic(robo/3).
+
+
+
+updateListaCaminhosRobo([], NovosCaminhos, NovosCaminhos).
+
+updateListaCaminhosRobo(ListaAntiga, [_|NovosCaminhos], ListaResultante):-
+	concat(ListaAntiga, NovosCaminhos, ListaResultante).
+
+
+
+atualizaRobo(NovosCaminhos, NovoCusto):-
+	robo(VerticeAtual, ListaCaminhos, CustoAtual),
+	last(NovosCaminhos, NovoVertice),
+	updateListaCaminhosRobo(ListaCaminhos, NovosCaminhos, ListaAtualizada),
+	substituirRelacao(
+		robo(VerticeAtual, ListaCaminhos, CustoAtual),
+		robo(NovoVertice, ListaAtualizada, CustoAtual+NovoCusto)
+	).
+	
+
+
+
+novoObjetivo(NovoVertice):-
+	substituirRelacao(objetivo(_), objetivo(NovoVertice)).
+
+
+
+roboLimpaSala([], PosFinal, aEstrela):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(PosFinal),
+	aEstrela([[0,0,0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo).
+	
+roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, aEstrela):-
+	robo(VerticeAtual, _, _),
+	novoObjetivo(ProxSujeira),
+	aEstrela([[0,0,0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	roboLimpaSala(ListaSujeiras, PosFinal, aEstrela).
+
+
+
+main():-
+	listaSujeiras(ListaSujeiras),
+	objetivo(VerticeFinal),
+	roboLimpaSala(ListaSujeiras, VerticeFinal, aEstrela).
+
+
+/*
+percorerrerSala([H, H1|Lista], PosInicial, PosFinal, aEstrela):-
+	objetivo(ObjetivoAntigo)
+	mudarObjetivo(i, H)
+	aEstrela([[0,0,0,PosInicial]],Solucao,Custo),
+	atulizarRobo(),
+	limparSala(H),
+	percorerrerSala(Lista, H, H1, aestrela).
+
+*/
+
+
+
+
+
 
 
 varrerLinha(Linha, Id, Y):-
@@ -91,9 +173,7 @@ sujeira(e).
 sujeira(c).
 sujeira(d).
 
-
 obstaculo(b).
-obstaculo(e).
 
 
 listaSujeiras(L):-
@@ -134,6 +214,7 @@ s(V1,V2):-sG(_,V1,V2).
 
 %Definir o nó (estado) objetivo
 objetivo(i).
+:- dynamic(objetivo/1).
 
 %maior([_,_,F1|_],[_,_,F2|_]) :- F1 > F2.
 
@@ -521,5 +602,14 @@ aEstrela([Caminho|Caminhos], Solucao, G) :-
 	concatena(Caminhos,NovosCaminhos,CaminhosTotal),
 	ordenaF(CaminhosTotal,CaminhosTotOrd),
 	aEstrela(CaminhosTotOrd, Solucao, G). 	%Coloca o noh corrente no caminho e continua a recursao
+
+
+/* limparSala/5
+
++ <arg-1> (Int) posição inicial do robô
++ <arg-2> (List<Int>) lista das posições das sujeiras
++ <arg-3> (Int) posição final do robô
+
+*/
 
 

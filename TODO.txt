@@ -65,6 +65,12 @@ NOVAS TAREFAS
 
 
 
+* jeito de compilar e executar arquivos .pl (começando com swipl -c <nome_arquivo>)
+
+
+
+
+
 Opcional (seria bom para ajudar no 10)
 
 - pesquisar formas de fazer input do terminal do prolog para arquivos
