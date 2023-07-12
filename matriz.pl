@@ -21,9 +21,37 @@ obstaculo(b).
 movimento(id, vertice_origem, vertice_destino, movimento).
 movimentos_robo().
 
-
+/*
 vertice(a, 2, 6).
 vertice(b, 4, 9).
+*/
+
+
+matriz(
+	[[a, b, c],
+	 [d, e, f],
+	 [g, h, i]
+	]
+).
+
+
+varrerLinha(Linha, Id, Y):-
+	nth0(Y, Linha, Id).
+
+
+getVertice([Linha|Matriz], Id, X, Y):-
+	(member(Id, Linha),
+	matriz(M),
+	nth0(X, M, Linha),
+	varrerLinha(Linha, Id, Y)
+	);
+	getVertice(Matriz, Id, X, Y).
+
+
+
+vertice(Id, X, Y):-
+	matriz(M),
+	getVertice(M, Id, X, Y), !.
 
 
 % Regra para o cálculo da distância de Manhattan entre dois pontos

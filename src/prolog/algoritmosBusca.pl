@@ -1,63 +1,14 @@
-%Definição das Arestas do Grafo - Slide 38 - Busca Informada e
-%Não-Informada - estado objetivo é o estado F 
+/*
 
-%grafo a partir do slide 37 do material do classroom: https://drive.google.com/file/d/148PtsedKRWKvIzZmDjxl2DF5WaE6UMfa/view
+    ######################################
 
+    Arquivo que contém os algoritmos de busca
 
-% definindo matriz 3x3 (de "a" até "i")
-
-/* desenho matriz
-
-    | a  b  c |
-    | d  e  f |
-    | g  h  i |
+    ######################################
 
 */
 
-
-% a, [c, d] -> [d, c], i
-
-
-% vertice(id, x, y)
-
-vertice(a, 0, 0).
-vertice(b, 1, 0).
-vertice(c, 2, 0).
-vertice(d, 0, 1).
-vertice(e, 1, 1).
-vertice(f, 2, 1).
-vertice(g, 0, 2).
-vertice(h, 1, 2).
-vertice(i, 2, 2).
-
-
-%sG(G(V1,V2),V1,V2) - custo de mudar do estado V1 para o estado V2
-
-sGB(1, a, b). sGB(1, b, a).
-sGB(1, a, d).
-sGB(1, b, c).
-sGB(1, b, e).
-sGB(1, c, f).
-sGB(1, d, e).
-sGB(1, d, g).
-sGB(1, e, f).
-sGB(1, e, h).
-sGB(1, f, i).
-sGB(1, g, h).
-sGB(1, h, i).
-
-
-sujeira(e).
-sujeira(c).
-sujeira(d).
-
-
-obstaculo(b).
-obstaculo(e).
-
-
-listaSujeiras(L):-
-    findall(X, sujeira(X), L).
+:- consult('matriz.pl').
 
 
 %Grafo não-dirigido:
@@ -94,6 +45,7 @@ s(V1,V2):-sG(_,V1,V2).
 
 %Definir o nó (estado) objetivo
 objetivo(i).
+:- dynamic(objetivo/1).
 
 %maior([_,_,F1|_],[_,_,F2|_]) :- F1 > F2.
 
@@ -481,5 +433,4 @@ aEstrela([Caminho|Caminhos], Solucao, G) :-
 	concatena(Caminhos,NovosCaminhos,CaminhosTotal),
 	ordenaF(CaminhosTotal,CaminhosTotOrd),
 	aEstrela(CaminhosTotOrd, Solucao, G). 	%Coloca o noh corrente no caminho e continua a recursao
-
 
