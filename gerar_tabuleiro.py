@@ -13,7 +13,21 @@ def is_there_any_dirty(elem: str) -> bool:
         return True
     return False
 
-def generate_vertice_and_edge_list(matrix: List[List[str]]) -> Tuple[List[str], List[str]]:
+def generate_matrix_fact(matrix: List[List[str]]) -> List[List[str]]:
+    n = len(matrix)
+    m = len(matrix[0])
+    m_aux = []
+    
+    for i in range(n):
+        m_line = []
+        for j in range(m):
+            cell_id = i * m + j
+            m_line.append(f'v{cell_id}')
+        m_aux.append(m_line)
+
+    return m_aux
+
+def old_generate_vertice_and_edge_list(matrix: List[List[str]]) -> Tuple[List[str], List[str]]:
     n = len(matrix)
     m = len(matrix[0])
     vertices = []
@@ -75,7 +89,28 @@ def generate_dirt_and_obstacles_list(matrix: List[List[str]]) -> Tuple[List[str]
 
     return dirt_list, obstacles_list
 
-def persist_facts(vertices_list: List[str], edges_list: List[str], obstacles_list: List[str], dirt_list: List[str], filename: str = 'tabuleiro.pl') -> None:
+def persist_facts(matrix_fact: List[List[str]], obstacles_list: List[str], dirt_list: List[str], filename: str = 'tabuleiro.pl') -> None:
+    with open(filename, 'w') as file:
+        file.write('%% tabuleiro\n')
+        file.write('matriz = ([\n')
+        for line in matrix_fact:
+            l_aux = f'{", ".join(line)}'
+            virg = '' if line == matrix_fact[-1] else ','
+            file.write(f'   [{l_aux}]{virg}\n')
+        file.write('])\n\n')
+
+        file.write('%% obstaculos\n')
+        for obstacle in obstacles_list:
+            file.write(obstacle + '\n')
+        file.write('\n')
+
+        file.write('%% sujeiras\n')
+        for dirt in dirt_list:
+            file.write(dirt + '\n')
+
+    print('Base de fatos salva em: ', filename)
+
+def old_persist_facts(vertices_list: List[str], edges_list: List[str], obstacles_list: List[str], dirt_list: List[str], filename: str = 'tabuleiro.pl') -> None:
     with open(filename, 'w') as file:
         file.write('%% vertices - vertice(id, x, y)\n')
         for vertice in vertices_list:
@@ -98,7 +133,7 @@ def persist_facts(vertices_list: List[str], edges_list: List[str], obstacles_lis
 
     print('Base de fatos salva em: ', filename)
 
-def generate_matrix(n: int, m: int) -> List[List[str]]:
+def generate_random_matrix(n: int, m: int) -> List[List[str]]:
     random_matrix = []
     for _ in range(n):
         line = []
@@ -107,7 +142,6 @@ def generate_matrix(n: int, m: int) -> List[List[str]]:
             line.append(elem)
         random_matrix.append(line)
     return random_matrix
-
 
 if __name__ == '__main__':
     print('Uso:')
@@ -126,13 +160,13 @@ if __name__ == '__main__':
     if generate_random_matrix:
         n = sys.argv[1]
         m = sys.argv[2]
-        matrix = generate_matrix(int(n), int(m))
+        matrix = generate_random_matrix(int(n), int(m))
     else:
         matrix = [
             ['*', '*', '*', 'O', 'S'],
             ['*', '*', '*', '*', '*']
         ]
 
-    vertices_list, edges_list = generate_vertice_and_edge_list(matrix)
+    final_matrix = generate_matrix_fact(matrix)
     dirt_list, obstacles_list = generate_dirt_and_obstacles_list(matrix)
-    persist_facts(vertices_list, edges_list, obstacles_list, dirt_list)
+    persist_facts(final_matrix, obstacles_list, dirt_list)
