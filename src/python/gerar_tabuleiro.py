@@ -99,7 +99,7 @@ def persist_facts(matrix_fact: List[List[str]], obstacles_list: List[str], dirt_
             l_aux = f'{", ".join(line)}'
             virg = '' if line == matrix_fact[-1] else ','
             file.write(f'   [{l_aux}]{virg}\n')
-        file.write('])\n\n')
+        file.write(']).\n\n')
 
         file.write('%% obstaculos\n')
         for obstacle in obstacles_list:

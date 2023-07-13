@@ -1,0 +1,50 @@
+# MATRIZ 3x3
+
+* início: v0
+* fim: v6
+
+%% tabuleiro
+matriz([
+   [v0, v1, v2],
+   [v3, v4, v5],
+   [v6, v7, v8]
+]).
+
+%% obstaculos
+obstaculo(v2).
+obstaculo(v4).
+
+%% sujeiras
+sujeira(v1).
+sujeira(v5).
+
+
+** RESULTADOS **
+
+
+- A*
+
+V = v6,
+L = [v0, v1, v0, v3, v6, v7, v8, v5, v8, v7, v6],
+C = 10
+
+
+- hill climbing
+
+V = v6,
+L = [v0, v1, v0, v3, v6, v7, v8, v5, v8, v7, v6],
+C = 10
+
+- best first
+
+V = v6,
+L = [v0, v1, v0, v3, v6, v7, v8, v5, v8, v7, v6],
+C = 10
+
+- branch and bound
+
+V = v6,
+L = [v0, v1, v0, v3, v6, v7, v8, v5, v8, v7, v6],
+C = 10
+
+

@@ -17,20 +17,20 @@
 
 definindo o robo
 
-+ <attr-1> : vertice atual do robo
++ <attr-1> : vertice atual do robo (default: v0)
 + <attr-2> : lista de vertices percorridos, caminho feito pelo robo
 + <attr-3> : custo da distancia percorrida pelo robo
 
 */
 
-robo(a, [], 0).
+robo(v0, [], 0).
 :- dynamic(robo/3).
 
 
-resetaRobo():-
+resetaRobo(VerticeInicial):-
 	substituirRelacao(
 		robo(_, _, _),
-		robo(a, [], 0)
+		robo(VerticeInicial, [], 0)
 	).
 
 
@@ -108,13 +108,17 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, hillClimb):-
 roboLimpaSala([], PosFinal, bestFirst):-
 	robo(VerticeAtual, _, _),
 	novoObjetivo(PosFinal),
-	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo).
 	
 roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, bestFirst):-
 	robo(VerticeAtual, _, _),
 	novoObjetivo(ProxSujeira),
-	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
+	bestFirst([[_,VerticeAtual]], ListaCaminhosNovos, _),
+	length(ListaCaminhosNovos, C),
+	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
 	roboLimpaSala(ListaSujeiras, PosFinal, bestFirst).
 

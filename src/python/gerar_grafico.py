@@ -42,12 +42,12 @@ def load_data(input_filename: str) -> Tuple[List[str], Dict[str, List[str]]]:
 
 
 if __name__ == '__main__':
-    if len(sys.argv):
+    if len(sys.argv) == 3:
         input_filename = sys.argv[1]
         output_filename = sys.argv[2]
     else:
-        input_filename = 'data.csv'
-        output_filename = 'graph.png'
+        input_filename = './src/python/data.csv'
+        output_filename = './resultados/graph.png'
 
     x, info = load_data(input_filename)
     generate_grouped_bar_chart(x, info, output_filename)

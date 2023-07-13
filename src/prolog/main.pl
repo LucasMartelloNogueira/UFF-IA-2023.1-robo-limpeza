@@ -10,22 +10,22 @@
 
 :- consult('robo.pl').
 
-main(aEstrela):-
-	listaSujeiras(ListaSujeiras),
-	objetivo(VerticeFinal),
-	roboLimpaSala(ListaSujeiras, VerticeFinal, aEstrela).
+main(aEstrela, VerticeInicial, VerticeFinal):-
+	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
+	resetaRobo(VerticeInicial),
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, aEstrela).
 
-main(hillClimb) :-
-	listaSujeiras(ListaSujeiras),
-	objetivo(VerticeFinal),
-	roboLimpaSala(ListaSujeiras, VerticeFinal, hillClimb).
+main(hillClimb, VerticeInicial, VerticeFinal) :-
+	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
+	resetaRobo(VerticeInicial),
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, hillClimb).
 
-main(bestFirst) :-
-	listaSujeiras(ListaSujeiras),
-	objetivo(VerticeFinal),
-	roboLimpaSala(ListaSujeiras, VerticeFinal, bestFirst).
+main(bestFirst, VerticeInicial, VerticeFinal) :-
+	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
+	resetaRobo(VerticeInicial),
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, bestFirst).
 
-main(branchAndBound) :-
-	listaSujeiras(ListaSujeiras),
-	objetivo(VerticeFinal),
-	roboLimpaSala(ListaSujeiras, VerticeFinal, branchAndBound).
+main(branchAndBound, VerticeInicial, VerticeFinal) :-
+	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
+	resetaRobo(VerticeInicial),
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, branchAndBound).

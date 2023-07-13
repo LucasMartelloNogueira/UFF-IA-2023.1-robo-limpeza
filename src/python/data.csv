@@ -1,3 +1,4 @@
 -,Best First,Branch and Bound,Hill Climbing,A*
-10x10,1,2,3,4
-100x100, 2,3,4,4
+5x5,10,0,10,10
+4x4,10,10,14,10
+3x3,10,10,10,10

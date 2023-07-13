@@ -19,7 +19,10 @@ sG(G,V1,V2):-
 
 
 %sF(G(n),H(n),F(n),VerticeOrigem,VerticeDestino) - usa a função F
-sF(G,H,F,V1,V2):-sG(G,V1,V2),sH(V2,H),F is G + H.
+sF(G,H,F,V1,V2):-
+	sG(G,V1,V2),
+	sH(V2,H),
+	F is G + H.
 
 
 % Regra para o cálculo da distância de Manhattan entre dois pontos
@@ -44,7 +47,7 @@ sH(H,V1,V2):-
 s(V1,V2):-sG(_,V1,V2).
 
 %Definir o nó (estado) objetivo
-objetivo(i).
+objetivo(v0). 
 :- dynamic(objetivo/1).
 
 %maior([_,_,F1|_],[_,_,F2|_]) :- F1 > F2.
@@ -231,6 +234,9 @@ utilizando somente a função de avaliação H
 - <arg-2> Novos caminhos possiveis a partir de caminho 
 (lista de todos os caminhos resultantes a partir de NoAtual)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+
+/*
 estendeH([_,No|Caminho],NovosCaminhos) :-
 	findall([HNovo,NovoNo,No|Caminho],
 	( 
@@ -240,6 +246,25 @@ estendeH([_,No|Caminho],NovosCaminhos) :-
 		HNovo is HN),
 		NovosCaminhos
 	).
+*/
+
+
+
+
+estendeH([_,No|Caminho],NovosCaminhos):-
+	listaVizinhos(No, ListaVizinhos),
+	objetivo(Obj),
+	
+	findall([HNovo,NovoNo,No|Caminho],
+	(
+		member(NovoNo, ListaVizinhos),
+		sH(HN, NovoNo, Obj),
+		not(member(NovoNo,[No|Caminho])),
+		not(obstaculo(NovoNo)),
+		HNovo is HN),
+	NovosCaminhos
+	).
+
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 estendeF(Caminho,NovosCaminhos).
@@ -252,8 +277,11 @@ F(NohNovo) = G(NohNovo) + H(NohNovo)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 estendeF([_,GC,_,No|Caminho],NovosCaminhos):-
+	listaVizinhos(No, ListaVizinhos),
+
 	findall([FNovo,GNovo,HNovo,NovoNo,No|Caminho],
 	      (
+			  member(NovoNo, ListaVizinhos),
           	  sF(GN,HN,_,No,NovoNo),
               not(member(NovoNo,[No|Caminho])),
 			  not(obstaculo(NovoNo)),
