@@ -92,7 +92,7 @@ def generate_dirt_and_obstacles_list(matrix: List[List[str]]) -> Tuple[List[str]
 def persist_facts(matrix_fact: List[List[str]], obstacles_list: List[str], dirt_list: List[str], filename: str = './src/prolog/tabuleiro.pl') -> None:
     with open(filename, 'w') as file:
         file.write('%% tabuleiro\n')
-        file.write('matriz = ([\n')
+        file.write('matriz([\n')
         for line in matrix_fact:
             l_aux = f'{", ".join(line)}'
             virg = '' if line == matrix_fact[-1] else ','
