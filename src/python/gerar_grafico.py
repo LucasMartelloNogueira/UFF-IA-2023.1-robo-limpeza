@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from typing import List, Dict, Tuple
 
 
-def generate_grouped_bar_chart(eixo_x: List[str], info: Dict[str, List[str]], output_filename: str) -> None:
+def generate_grouped_bar_chart(eixo_x: List[str], info: Dict[str, List[str]], output_filename: str, 
+                               x_label: str, y_label: str, title: str) -> None:
     x = np.arange(len(eixo_x))  # the label locations
     width = 0.2  # the width of the bars
     multiplier = 0
@@ -18,9 +19,9 @@ def generate_grouped_bar_chart(eixo_x: List[str], info: Dict[str, List[str]], ou
         ax.bar_label(rects, padding=3)
         multiplier += 1
 
-    ax.set_ylabel('Custo (unidades de tabuleiro)')
-    ax.set_xlabel('Tamanho da matriz')
-    ax.set_title('Custo por algoritmo e tamanho de matriz')
+    ax.set_ylabel(y_label)
+    ax.set_xlabel(x_label)
+    ax.set_title(title)
     ax.set_xticks(x + width, eixo_x)
     ax.legend(loc='upper left')
     # ax.set_ylim(0, 250)
@@ -42,12 +43,21 @@ def load_data(input_filename: str) -> Tuple[List[str], Dict[str, List[str]]]:
 
 
 if __name__ == '__main__':
+    # Gráfico de custo
     if len(sys.argv) == 3:
         input_filename = sys.argv[1]
         output_filename = sys.argv[2]
     else:
         input_filename = './src/python/data.csv'
-        output_filename = './resultados/graph.png'
+        output_filename = './resultados/cost_graph.png'
 
     x, info = load_data(input_filename)
-    generate_grouped_bar_chart(x, info, output_filename)
+    generate_grouped_bar_chart(x, info, output_filename, 
+                               'Tamanho da matriz', 'Custo (unidades de tabuleiro)', 'Custo por algoritmo e tamanho de matriz')
+
+    x, info = load_data('time.csv')
+    generate_grouped_bar_chart(x, info, './resultados/time_graph.png', 
+                               'Tamanho da matriz', 'Tempo (segundos)', 'Tempo de execução por algoritmo e tamanho de matriz')
+
+
+    # Gráfico de tempo de execução
