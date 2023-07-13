@@ -11,7 +11,7 @@ Integrantes:
 - Instalar requirements.txt.
   - ```pip install -r requirements.txt```
 - O tabuleiro é gerado automaticamente atarvés de um script python, assim como sua visualização em PNG.
-  - Utilizar comando ```python .\src\python\gerar_tabuleiro n m.py```, sendo n o número de linhas desejado e m o número de colunas.
+  - Utilizar comando ```python .\src\python\gerar_tabuleiro.py n m.py```, sendo n o número de linhas desejado e m o número de colunas.
  - A análise comparativa também é gerada automaticamente, basta preencher a tabela **data.csv** e executar ```python .\src\python\gerar_grafico.py```.
 
 ## Env Config - Prolog
