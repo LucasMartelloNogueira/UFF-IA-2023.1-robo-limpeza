@@ -83,9 +83,9 @@ def generate_dirt_and_obstacles_list(matrix: List[List[str]]) -> Tuple[List[str]
             cell_id = i * m + j
             cell = matrix[i][j]
             if cell == 'O':
-                obstacles_list.append(f'obstaculo({cell_id}).')
+                obstacles_list.append(f'obstaculo(v{cell_id}).')
             elif cell == 'S':
-                dirt_list.append(f'sujeira({cell_id}).')
+                dirt_list.append(f'sujeira(v{cell_id}).')
 
     return dirt_list, obstacles_list
 
@@ -138,7 +138,7 @@ def generate_random_matrix_func(n: int, m: int) -> List[List[str]]:
     for _ in range(n):
         line = []
         for _ in range(m):
-            elem = random.choice(['*', 'S', 'O', '*', '*'])
+            elem = random.choice(['*', 'S', 'O', '*', '*', '*', '*'])
             line.append(elem)
         random_matrix.append(line)
     return random_matrix
