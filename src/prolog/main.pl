@@ -13,19 +13,23 @@
 main(aEstrela, VerticeInicial, VerticeFinal):-
 	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
 	resetaRobo(VerticeInicial),
-	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, aEstrela).
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, aEstrela),
+	removeSujeiras(SujeirasOrdenadas).
 
 main(hillClimb, VerticeInicial, VerticeFinal) :-
 	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
 	resetaRobo(VerticeInicial),
-	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, hillClimb).
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, hillClimb),
+	removeSujeiras(SujeirasOrdenadas).
 
 main(bestFirst, VerticeInicial, VerticeFinal) :-
 	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
 	resetaRobo(VerticeInicial),
-	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, bestFirst).
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, bestFirst),
+	removeSujeiras(SujeirasOrdenadas).
 
 main(branchAndBound, VerticeInicial, VerticeFinal) :-
 	listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas),
 	resetaRobo(VerticeInicial),
-	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, branchAndBound).
+	roboLimpaSala(SujeirasOrdenadas, VerticeFinal, branchAndBound),
+	removeSujeiras(SujeirasOrdenadas).

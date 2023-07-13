@@ -12,3 +12,10 @@ obstaculo(v4).
 %% sujeiras
 sujeira(v1).
 sujeira(v5).
+:- dynamic(sujeira/1).
+
+removeSujeiras([]).
+
+removeSujeiras([S|Sujeiras]):-
+   retract(sujeira(S)),
+   removeSujeiras(Sujeiras).
