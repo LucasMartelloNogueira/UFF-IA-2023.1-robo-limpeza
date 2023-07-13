@@ -1,0 +1,52 @@
+# MATRIZ 4x4
+
+* início: v0
+* fim: v15
+
+%% tabuleiro
+matriz([
+   [v0, v1, v2, v3],
+   [v4, v5, v6, v7],
+   [v8, v9, v10, v11],
+   [v12, v13, v14, v15]
+]).
+
+%% obstaculos
+obstaculo(v5).
+obstaculo(v9).
+
+%% sujeiras
+sujeira(v6).
+sujeira(v12).
+
+
+
+
+** RESULTADOS **
+
+
+- A*
+
+V = v15,
+L = [v0, v1, v2, v6, v10, v14, v13, v12, v13, v14, v15],
+C = 10
+
+- hill climbing
+
+V = v15,
+L = [v0, v4, v8, v12, v13, v14, v10, v6, v10, v14, v13, v12, v13, v14, v15],
+C = 14
+
+- best first
+
+V = v15,
+L = [v0, v1, v2, v6, v10, v14, v13, v12, v13, v14, v15],
+C = 10.
+
+- branch and bound
+
+V = v15,
+L = [v0, v1, v2, v6, v10, v14, v13, v12, v13, v14, v15],
+C = 10.
+
+

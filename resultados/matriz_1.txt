@@ -1,0 +1,53 @@
+# MATRIZ 5X5
+
+* começo: v0
+* fim: v24
+
+%% tabuleiro
+matriz([
+   [v0, v1, v2, v3, v4],
+   [v5, v6, v7, v8, v9],
+   [v10, v11, v12, v13, v14],
+   [v15, v16, v17, v18, v19],
+   [v20, v21, v22, v23, v24]
+]).
+
+%% obstaculos
+obstaculo(v6).
+obstaculo(v12).
+
+%% sujeiras
+sujeira(v2).
+sujeira(v4).
+sujeira(v23).
+
+
+
+
+** RESULTADOS **
+
+
+- A*
+
+V = v24,
+L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
+C = 10.
+
+- hill climbing
+
+V = v24,
+L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
+C = 10
+
+- best first
+
+V = v24,
+L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
+C = 10
+
+- branch and bound
+
+V = ?
+L = [?]
+C = 0
+
