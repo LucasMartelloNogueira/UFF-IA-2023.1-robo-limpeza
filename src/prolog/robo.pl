@@ -78,6 +78,7 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, aEstrela):-
 	novoObjetivo(ProxSujeira),
 	aEstrela([[0,0,0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	%retract(ProxSujeira),
 	roboLimpaSala(ListaSujeiras, PosFinal, aEstrela).
 
 
@@ -99,6 +100,7 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, hillClimb):-
 	length(ListaCaminhosNovos, C),
 	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	%retract(ProxSujeira),
 	roboLimpaSala(ListaSujeiras, PosFinal, hillClimb).
 
 
@@ -120,6 +122,7 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, bestFirst):-
 	length(ListaCaminhosNovos, C),
 	CustoNovo is C-1,
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	%retract(ProxSujeira),
 	roboLimpaSala(ListaSujeiras, PosFinal, bestFirst).
 
 
@@ -137,4 +140,5 @@ roboLimpaSala([ProxSujeira|ListaSujeiras], PosFinal, branchAndBound):-
 	novoObjetivo(ProxSujeira),
 	branchAndBound([[0,VerticeAtual]], ListaCaminhosNovos, CustoNovo),
 	atualizaRobo(ListaCaminhosNovos, CustoNovo),
+	%retract(ProxSujeira),
 	roboLimpaSala(ListaSujeiras, PosFinal, branchAndBound).

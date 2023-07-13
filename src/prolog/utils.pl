@@ -13,6 +13,9 @@ substituirRelacao(RelacaoAntiga, RelacaoNova):-
     retract(RelacaoAntiga),
     assertz(RelacaoNova).
 
+
+
+
 pop([_], []).
 
 pop([X|XS], [X|Resto]):-
