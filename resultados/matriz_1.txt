@@ -13,13 +13,15 @@ matriz([
 ]).
 
 %% obstaculos
-obstaculo(v6).
-obstaculo(v12).
+obstaculo(v16).
+obstaculo(v18).
 
 %% sujeiras
 sujeira(v2).
-sujeira(v4).
-sujeira(v23).
+sujeira(v8).
+sujeira(v11).
+sujeira(v14).
+sujeira(v15).
 
 
 
@@ -30,24 +32,23 @@ sujeira(v23).
 - A*
 
 V = v24,
-L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
-C = 10.
+L = [v0, v1, v2, v7, v12, v11, v10, v15, v10, v5, v6, v7, v8, v13, v14, v19, v24],
+C = 16 .
 
 - hill climbing
 
 V = v24,
-L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
-C = 10
+L = [v0, v1, v2, v7, v12, v11, v10, v15, v10, v5, v6, v7, v8, v13, v14, v19, v24],
+C = 16 .
 
 - best first
 
 V = v24,
-L = [v0, v1, v2, v3, v4, v9, v14, v19, v24, v23, v24],
-C = 10
+L = [v0, v1, v2, v7, v12, v11, v10, v15, v10, v5, v6, v7, v8, v13, v14, v19, v24],
+C = 16 .
 
 - branch and bound
 
-V = ?
-L = [?]
-C = 0
-
+V = v24,
+L = [v0, v1, v2, v7, v12, v11, v10, v15, v10, v5, v6, v7, v8, v13, v14, v19, v24],
+C = 16 .

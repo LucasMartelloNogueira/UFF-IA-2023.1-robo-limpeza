@@ -109,6 +109,7 @@ def persist_facts(matrix_fact: List[List[str]], obstacles_list: List[str], dirt_
         file.write('%% sujeiras\n')
         for dirt in dirt_list:
             file.write(dirt + '\n')
+        file.write(':- dynamic(sujeira/1).\n')
 
     print('Base de fatos salva em: ', filename)
 

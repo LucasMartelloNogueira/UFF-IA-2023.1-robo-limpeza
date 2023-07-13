@@ -69,3 +69,9 @@ listaSujeirasOrdenadas(VerticeInicial, SujeirasOrdenadas) :-
     findall(Distancia-Sujeira, (sujeira(Sujeira), distancia_manhattan(VerticeInicial, Sujeira, Distancia)), DistanciasSujeiras),
     keysort(DistanciasSujeiras, Sorted),
     pairs_values(Sorted,  SujeirasOrdenadas).
+
+removeSujeiras([]).
+
+removeSujeiras([S|Sujeiras]):-
+   retract(sujeira(S)),
+   removeSujeiras(Sujeiras).
