@@ -17,20 +17,20 @@
 
 definindo o robo
 
-+ <attr-1> : vertice atual do robo
++ <attr-1> : vertice atual do robo (default: v0)
 + <attr-2> : lista de vertices percorridos, caminho feito pelo robo
 + <attr-3> : custo da distancia percorrida pelo robo
 
 */
 
-robo(a, [], 0).
+robo(v0, [], 0).
 :- dynamic(robo/3).
 
 
-resetaRobo():-
+resetaRobo(VerticeInicial):-
 	substituirRelacao(
 		robo(_, _, _),
-		robo(a, [], 0)
+		robo(VerticeInicial, [], 0)
 	).
 
 

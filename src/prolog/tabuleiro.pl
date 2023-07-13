@@ -1,5 +1,5 @@
 %% tabuleiro
-matriz = ([
+matriz([
    [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9],
    [v10, v11, v12, v13, v14, v15, v16, v17, v18, v19],
    [v20, v21, v22, v23, v24, v25, v26, v27, v28, v29],
@@ -10,54 +10,54 @@ matriz = ([
    [v70, v71, v72, v73, v74, v75, v76, v77, v78, v79],
    [v80, v81, v82, v83, v84, v85, v86, v87, v88, v89],
    [v90, v91, v92, v93, v94, v95, v96, v97, v98, v99]
-])
+]).
 
 %% obstaculos
-obstaculo(2).
-obstaculo(3).
-obstaculo(4).
-obstaculo(15).
-obstaculo(23).
-obstaculo(32).
-obstaculo(33).
-obstaculo(35).
-obstaculo(40).
-obstaculo(42).
-obstaculo(47).
-obstaculo(50).
-obstaculo(52).
-obstaculo(57).
-obstaculo(59).
-obstaculo(60).
-obstaculo(61).
-obstaculo(65).
-obstaculo(75).
-obstaculo(77).
-obstaculo(79).
-obstaculo(86).
-obstaculo(95).
-obstaculo(97).
-obstaculo(99).
+obstaculo(v2).
+obstaculo(v3).
+obstaculo(v4).
+obstaculo(v15).
+obstaculo(v23).
+obstaculo(v32).
+obstaculo(v33).
+obstaculo(v35).
+obstaculo(v40).
+obstaculo(v42).
+obstaculo(v47).
+obstaculo(v50).
+obstaculo(v52).
+obstaculo(v57).
+obstaculo(v59).
+obstaculo(v60).
+obstaculo(v61).
+obstaculo(v65).
+obstaculo(v75).
+obstaculo(v77).
+obstaculo(v79).
+obstaculo(v86).
+obstaculo(v95).
+obstaculo(v97).
+obstaculo(v99).
 
 %% sujeiras
-sujeira(7).
-sujeira(9).
-sujeira(18).
-sujeira(19).
-sujeira(20).
-sujeira(25).
-sujeira(26).
-sujeira(27).
-sujeira(30).
-sujeira(37).
-sujeira(43).
-sujeira(44).
-sujeira(62).
-sujeira(63).
-sujeira(67).
-sujeira(69).
-sujeira(70).
-sujeira(73).
-sujeira(76).
-sujeira(83).
-sujeira(84).
+sujeira(v7).
+sujeira(v9).
+sujeira(v18).
+sujeira(v19).
+sujeira(v20).
+sujeira(v25).
+sujeira(v26).
+sujeira(v27).
+sujeira(v30).
+sujeira(v37).
+sujeira(v43).
+sujeira(v44).
+sujeira(v62).
+sujeira(v63).
+sujeira(v67).
+sujeira(v69).
+sujeira(v70).
+sujeira(v73).
+sujeira(v76).
+sujeira(v83).
+sujeira(v84).
