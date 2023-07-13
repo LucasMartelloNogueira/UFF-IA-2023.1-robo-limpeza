@@ -1,35 +1,41 @@
-# Informações úteis
+# Trabalho Prático IA 2023.1
 
-## link para download prolog
-* https://www.swi-prolog.org/download/stable/bin/swipl-9.0.4-1.x64.exe.envelope
+Integrantes:
 
-## como iniciar prolog no terminal
-* executar o comando: "swipl"
+- Karina Pereira de Lemos
+- Lucas Martello Nogueira
+- Valesca Moura de Sousa
 
-## como carregar programa no CLI do prolog: 
-* consult('<nome_programa>').
+## Env Config
 
-## como fazer para aparecer vario resultados de uma query
-* apertar tecla "n" para pegar próximo resultado
+#### Link para download prolog
+- https://www.swi-prolog.org/download/stable/bin/swipl-9.0.4-1.x64.exe.envelope
 
-## como fazer para sair do terminal do swipl
-* inserir o comando "halt."
+### Como iniciar prolog no terminal:
+- Executar o comando: ```swipl```.
 
-## para acessar um elemento de lista
-* usar predicado nth0(i, <Lista>, Elem) --> Elem = Lista[i]
+### Como carregar programa no CLI do prolog: 
+- ```consult('<nome_programa>')```.
 
+### Como fazer para aparecer vários resultados de uma query:
+- Apertar tecla ```n``` para pegar os próximos resultados
 
-## para pegar indice de um elemento da lista
-* usar predicado nth0(I, <Lista>, <elemento>) --> I = índice do <elemento> na <Lista>
+### Como fazer para sair do terminal do swipl:
+- Inserir o comando ```halt.```
 
+## Dicas:
+#### Para acessar um elemento de lista:
+- Usar predicado nth0(i, <Lista>, Elem) --> Elem = Lista[i]
 
-## como importar arquivos no prolog
-* usar: :- consult('<nome_arquivo.pl>').
+#### Para pegar indice de um elemento da lista
+- Usar predicado nth0(I, <Lista>, <elemento>) --> I = índice do <elemento> na <Lista>
 
+#### Como importar arquivos no prolog
+- Usar: :- consult('<nome_arquivo.pl>').
 
-## como rodar executar programa
-* em 'testes.pl' executar programa main().
-* vai rodar tudo e botar as listas e custo na relação robo
-* se rodar ?- robo(V, L, C). não vai aparecer lista toda (pq é mto grande) (e custo tá bugado, precisa consertar isso)
-* precisa rodar com ?- robo(V, L, C) ; true.
-* dps que rodar isso, vai ter opção de apertar "w" que vai rodar de novo e gerar os valores completos
+## Como executar
+- Em 'testes.pl' executar programa main().
+- Vai rodar tudo e botar as listas e custo na relação robo
+- Se rodar ?- robo(V, L, C). não vai aparecer lista toda (pq é mto grande) (e custo tá bugado, precisa consertar isso)
+- Precisa rodar com ?- robo(V, L, C) ; true.
+- Dps que rodar isso, vai ter opção de apertar "w" que vai rodar de novo e gerar os valores completos
