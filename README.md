@@ -47,3 +47,6 @@ Integrantes:
 - Se rodar ?- robo(V, L, C). não vai aparecer lista toda (pq é mto grande) (e custo tá bugado, precisa consertar isso)
 - Precisa rodar com ?- robo(V, L, C) ; true.
 - Dps que rodar isso, vai ter opção de apertar "w" que vai rodar de novo e gerar os valores completos
+
+## Como pegar tempo de execução de uma função
+- usar: ```time(main(<algoritmo>, vInicial, Vfinal))```
