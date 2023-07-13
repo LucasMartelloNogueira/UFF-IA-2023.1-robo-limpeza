@@ -206,4 +206,4 @@ if __name__ == '__main__':
     # Gerar a imagem da matriz
     imagem_matriz = gerar_imagem_matriz(matriz, celula_tamanho, rótulos)
     # Salvar a imagem
-    imagem_matriz.save(f'./src/resultados/imagem_matriz_{len(matriz)}x{len(matriz[0])}.png')
+    imagem_matriz.save(f'./resultados/imagem_matriz_{len(matriz)}x{len(matriz[0])}.png')
