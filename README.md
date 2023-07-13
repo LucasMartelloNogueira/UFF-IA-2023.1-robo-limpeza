@@ -6,7 +6,15 @@ Integrantes:
 - Lucas Martello Nogueira
 - Valesca Moura de Sousa
 
-## Env Config
+## Otimização com Python 
+
+- Instalar requirements.txt.
+  - ```pip install -r requirements.txt```
+- O tabuleiro é gerado automaticamente atarvés de um script python, assim como sua visualização em PNG.
+  - Utilizar comando ```python .\src\python\gerar_tabuleiro n m.py```, sendo n o número de linhas desejado e m o número de colunas.
+ - A análise comparativa também é gerada automaticamente, basta preencher a tabela **data.csv** e executar ```python .\src\python\gerar_grafico.py```.
+
+## Env Config - Prolog
 
 #### Link para download prolog
 - https://www.swi-prolog.org/download/stable/bin/swipl-9.0.4-1.x64.exe.envelope
