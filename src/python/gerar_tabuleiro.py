@@ -1,6 +1,8 @@
 import sys
 import random
 from typing import List, Tuple
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 
 def is_there_any_obstacle(elem: str) -> bool:
@@ -143,6 +145,32 @@ def generate_random_matrix_func(n: int, m: int) -> List[List[str]]:
         random_matrix.append(line)
     return random_matrix
 
+def gerar_imagem_matriz(matriz, celula_tamanho, rótulos):
+    altura, largura = matriz.shape
+    imagem_largura = largura * celula_tamanho
+    imagem_altura = altura * celula_tamanho
+
+    # Criar uma imagem vazia
+    imagem = Image.new('RGB', (imagem_largura, imagem_altura), 'white')
+    draw = ImageDraw.Draw(imagem)
+    fonte = ImageFont.truetype('arial.ttf', 14)
+
+    # Preencher a imagem com os valores da matriz e os rótulos
+    for i in range(altura):
+        for j in range(largura):
+            valor = matriz[i, j]
+            x = j * celula_tamanho
+            y = i * celula_tamanho
+            # Desenhar o retângulo da célula
+            draw.rectangle([(x, y), (x + celula_tamanho, y + celula_tamanho)], outline='black')
+            # Adicionar o rótulo da célula
+            rótulo = str(valor) if rótulos else ''
+            draw.text((x + celula_tamanho // 2, y + celula_tamanho // 2), rótulo, fill='black',
+                      font=fonte, anchor='mm')
+
+    return imagem
+
+
 if __name__ == '__main__':
     print('Uso:')
     print('- python gerar_tabuleiro.py')
@@ -170,3 +198,12 @@ if __name__ == '__main__':
     final_matrix = generate_matrix_fact(matrix)
     dirt_list, obstacles_list = generate_dirt_and_obstacles_list(matrix)
     persist_facts(final_matrix, obstacles_list, dirt_list)
+
+    matriz = np.array(matrix)
+    # Tamanho da célula e rótulos
+    celula_tamanho = 50
+    rótulos = True
+    # Gerar a imagem da matriz
+    imagem_matriz = gerar_imagem_matriz(matriz, celula_tamanho, rótulos)
+    # Salvar a imagem
+    imagem_matriz.save(f'./resultados/imagem_matriz_{len(matriz)}x{len(matriz[0])}.png')
